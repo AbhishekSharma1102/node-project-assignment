@@ -1,18 +1,11 @@
 pipeline {
-    agent any
+agent any
+stages {
 
-    stages {
-
-        stage('Build') {
-            steps {
-                sh 'npm install'
-            }
-        }
-
-        stage('Test') {
-            steps {
-                sh 'node index.js'
-            }
+    stage('Build Docker Image') {
+        steps {
+            sh 'docker build -t nodeapp:${BUILD_NUMBER} .'
         }
     }
+}
 }
